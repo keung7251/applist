@@ -1,0 +1,32 @@
+// bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+// font
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+
+
+// utilities
+@import 'utilities/variables';
+@import 'utilities/common';
+
+$font-size: 72px;
+
+
+html, body {
+  height: 100%;
+}
+
+
+
+// components
+@import 'components/header';
+@import 'components/footer';
+@import 'components/main';
+@import 'components/_topgrossing';
+@import 'components/_topfree';
+
+
+
+// makes browsers render all elements more consistently 
+@import '~normalize-scss/sass/normalize';

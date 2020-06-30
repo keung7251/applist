@@ -1,0 +1,13 @@
+header {
+    width: 100%;
+    padding: 10px;
+    color: #F9F9F9;
+    border-bottom: 1px solid $border-color;
+
+    .search-input  {
+        font-family: Arial, FontAwesome;
+        text-align: center;
+        background-color: #E4E5E6; 
+        border: 0;
+    }
+}

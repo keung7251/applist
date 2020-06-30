@@ -1,0 +1,39 @@
+
+#top-free {
+    .top-free-container {
+        padding: 10px; 
+        border-bottom: 1px solid #D4D4D4;
+        display: flex;
+        flex-direction: row;
+
+        .item-order-container {
+            flex: 1.5;
+        }
+
+        .item-image-container {
+            flex: 3;
+            img {
+                height: 70px;
+            }
+        }
+
+        .item-detail-container {
+            flex: 8;
+
+            h2 {
+                font-size: 16px;
+            }
+
+            p {
+                font-size: 12px;
+                margin: 0;
+                color: $item-category-color;
+            }
+
+            .rating {
+                color: #FF9000; 
+                font-size: 8px;
+            }
+        }
+    }
+}
