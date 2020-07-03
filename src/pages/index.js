@@ -17,13 +17,35 @@ const fetchHeader = new Headers({
 
 class Home extends React.Component {
 
+    constructor(props) {
+        super(props)
+    
+        this.state = {
+            scrollHeight: 0
+        };
+
+    }
+
     componentDidMount() {
         window.addEventListener("scroll", () => this.handleScroll());
+       
     }
 
     componentWillUnmount() {
         window.removeEventListener("scroll", () => this.handleScroll());
     }
+
+    componentWillReceiveProps(nextProps) {
+        let { props } = this;
+        console.log("nextProps", nextProps)
+        if(!props.router.query.items || nextProps.router.query.items != props.router.query.items ) {
+            console.log("scroll!")
+            setTimeout(() => {          
+                window.scrollTo(0, this.state.scrollHeight);
+            }, 10);
+        }
+
+    } 
 
     handleScroll() {
         let { props } = this;
@@ -35,8 +57,10 @@ class Home extends React.Component {
         const html = document.documentElement;
         const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
         const windowBottom = windowHeight + window.pageYOffset;
+
         if (windowBottom >= docHeight && items < 100) { 
             let indicatorHeight = html.scrollHeight - windowHeight / 2
+            this.setState({scrollHeight: indicatorHeight})
             this.props.dispatch(showLoadingIndicator(true))
             if(document.getElementById("loading-indicator")) {
                 document.getElementById("loading-indicator").style.top = indicatorHeight + 'px';
@@ -47,6 +71,8 @@ class Home extends React.Component {
                 pathname: currentPath,
                 query: 'items=' + items,
             });
+
+            
         } 
     }
 

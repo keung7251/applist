@@ -13,10 +13,8 @@
 $font-size: 72px;
 
 
-html, body {
-  height: 100%;
-}
-
+html { height: 100%; overflow:auto; }
+body { height: 100%; }
 
 
 // components
