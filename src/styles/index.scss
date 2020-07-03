@@ -9,6 +9,7 @@
 // utilities
 @import 'utilities/variables';
 @import 'utilities/common';
+@import 'utilities/animation';
 
 $font-size: 72px;
 
@@ -24,6 +25,9 @@ body { height: 100%; }
 @import 'components/topgrossing';
 @import 'components/topfree';
 @import 'components/loading';
+
+
+
 
 
 

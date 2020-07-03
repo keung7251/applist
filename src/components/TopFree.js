@@ -42,7 +42,7 @@ class TopFree extends React.Component {
                         let ratingPoint = parseFloat(item.detail.contentAdvisoryRating.replace("+", ".5"));  
                 
                         return(
-                            <div className="top-free-container flex-center" key={index}>
+                            <div className="top-free-container flex-center fade-in" key={index}>
                                 <p className="flex-center item-order-container">{index + 1}</p>
                                 <div className="flex-center item-image-container">
                                     <img src={item.artworkUrl100} className={(index % 2 == 0) ? "rounded" : "rounded-circle"} />

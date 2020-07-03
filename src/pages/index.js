@@ -39,7 +39,10 @@ class Home extends React.Component {
         let { props } = this;
         if(!props.router.query.items || nextProps.router.query.items != props.router.query.items ) {
             setTimeout(() => {          
-                window.scrollTo(0, this.state.scrollHeight);
+                window.scrollTo({
+                    top:this.state.scrollHeight,
+                    behavior: 'smooth'
+                });
             }, 10);
         }
 
