@@ -37,9 +37,7 @@ class Home extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         let { props } = this;
-        console.log("nextProps", nextProps)
         if(!props.router.query.items || nextProps.router.query.items != props.router.query.items ) {
-            console.log("scroll!")
             setTimeout(() => {          
                 window.scrollTo(0, this.state.scrollHeight);
             }, 10);
@@ -49,6 +47,7 @@ class Home extends React.Component {
 
     handleScroll() {
         let { props } = this;
+        let { searchKeyword } = props;
         let query = props.router.query
         let items = query.items || 10
 
@@ -58,7 +57,7 @@ class Home extends React.Component {
         const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
         const windowBottom = windowHeight + window.pageYOffset;
 
-        if (windowBottom >= docHeight && items < 100) { 
+        if (windowBottom >= docHeight && items < 100 && searchKeyword == "") { 
             let indicatorHeight = html.scrollHeight - windowHeight / 2
             this.setState({scrollHeight: indicatorHeight})
             this.props.dispatch(showLoadingIndicator(true))
