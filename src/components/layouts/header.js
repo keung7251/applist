@@ -5,7 +5,6 @@ import { updateSearchKeyword } from 'src/redux/action/main';
 class Header extends React.Component {
 
     render() {
-        console.log("searchKeyword", this.props.searchKeyword)
 
         return (
             <header>

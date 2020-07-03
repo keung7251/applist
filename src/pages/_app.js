@@ -9,8 +9,6 @@ class Main extends App {
     render() {
         //pageProps that were returned  from 'getInitialProps' are stored in the props i.e. pageprops
         const {Component, pageProps} = this.props;
-        
-        console.log("store", store)
 
         if(store) {
             return (

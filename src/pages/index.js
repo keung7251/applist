@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import React from 'react';
 const axios = require('axios');
 
+import { showLoadingIndicator } from 'src/redux/action/main';
+
 import Router, { withRouter } from 'next/router'
 
 const fetchHeader = new Headers({
@@ -34,6 +36,11 @@ class Home extends React.Component {
         const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
         const windowBottom = windowHeight + window.pageYOffset;
         if (windowBottom >= docHeight && items < 100) { 
+            let indicatorHeight = html.scrollHeight - windowHeight / 2
+            this.props.dispatch(showLoadingIndicator(true))
+            if(document.getElementById("loading-indicator")) {
+                document.getElementById("loading-indicator").style.top = indicatorHeight + 'px';
+            }        
             const currentPath = props.router.pathname;
             items = parseInt(items) + 10
             props.router.push({
@@ -46,20 +53,17 @@ class Home extends React.Component {
     render() {
         let { props } = this;
         let { searchKeyword, topGrossingData, topFreeData } = props;
-        console.log("topGrossingData", topGrossingData)
-        console.log("topFreeData", topFreeData)
 
         return (
-            <Layout title="Top grossing & free apps">
+            <Layout title="Top grossing & free apps"> 
                 <TopGrossing data={topGrossingData} filterString={searchKeyword} />
-                <TopFree data={topFreeData} filterString={searchKeyword} />
-            
+                <TopFree data={topFreeData} filterString={searchKeyword} />   
             </Layout>
         );
     }
 }
 
-Home.getInitialProps = async ({ query }) => {
+Home.getInitialProps = async ({ query, store }) => {
     // fetch API pre-render
     // useful for SEO.
 
@@ -78,6 +82,7 @@ Home.getInitialProps = async ({ query }) => {
                 .then(detail => detail = detail.json())
                 .then(detail => detail = detail.results[0])
             }))
+            store.dispatch(showLoadingIndicator(false))
             return results
         })
     ]);
@@ -87,7 +92,6 @@ Home.getInitialProps = async ({ query }) => {
 
 const mapStateToProps = (state, ownProps) => {
 
-    console.log("state", state)
     return {
         searchKeyword: state.main.searchKeyword,
         itemPerPage: state.main.itemPerPage

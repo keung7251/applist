@@ -2,8 +2,7 @@ import * as actionTypes from '../action/actionTypes';
 
 export const initialState = {
     searchKeyword: '',
-    itemPerPage: 10
-
+    loadingIndicator: false,
 };
 
 function reducer (state = initialState, action) {
@@ -13,6 +12,11 @@ function reducer (state = initialState, action) {
             return {
                 ...state,
                 ...{ searchKeyword: action.value }
+            };
+        case actionTypes.SHOW_LOADING_INDICATOR:
+            return {
+                ...state,
+                ...{ loadingIndicator: action.value }
             };
 
         default:
