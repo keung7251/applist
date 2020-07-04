@@ -100,7 +100,8 @@ Home.getInitialProps = async ({ query, store }) => {
     const [topGrossingData, topFreeData] = await Promise.all([
         fetch(`https://rss.itunes.apple.com/api/v1/hk/ios-apps/top-grossing/all/10/explicit.json`)
         .then(r => r.json())
-        .then(data => data.feed.results),
+        .then(data => data.feed.results)
+        .catch(error => console.error(error)),
         fetch(`https://rss.itunes.apple.com/api/v1/hk/ios-apps/top-free/all/${items}/explicit.json`)
         .then(r => r.json())
         .then(async (data)=> {
@@ -109,10 +110,12 @@ Home.getInitialProps = async ({ query, store }) => {
                 result.detail = await fetch(`https://itunes.apple.com/hk/lookup?id=${result.id}`)
                 .then(detail => detail = detail.json())
                 .then(detail => detail = detail.results[0])
+                .catch(error => console.error(error))
             }))
             store.dispatch(showLoadingIndicator(false))
             return results
         })
+        .catch(error => console.error(error))
     ]);
 
     return { topGrossingData, topFreeData };
