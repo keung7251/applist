@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a single page Next.js web application that redesign the App Store listing page. There are 3 major features: app listing, app recommendation and search.
 
 ## Getting Started
 
@@ -12,19 +12,15 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+OR
 
-## Learn More
+It deploys on Vercel. You can access [https://applist-gamma.vercel.app/](https://applist-gamma.vercel.app/).
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## No 'Access-Control-Allow-Origin' Header Solution
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Problem: 
+Access to fetch at 'https://rss.itunes.apple.com/api/v1/hk/ios-apps/top-grossing/all/10/explicit.json' from origin 'https://applist-gamma.vercel.app' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Solution:
+Install CORS Unblock extension to load your page.
